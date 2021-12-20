@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../static/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/class_error.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/flash_msg.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/recetas.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/barra_principal.css">
+    <title>Listas Inteligentes | Receta</title>
+</head>
+<body>
+    <div class="barra_principal">
+        <div class="dropdown">
+            <button class="dropbutton">Listas
+            </button>
+            <div class="dropdown-content">
+              <a href="/nueva_lista">Crear lista</a>
+              <a href="/mis_listas">Mis listas</a>
+            </div>
+          </div>
+        <div class="dropdown">
+            <button id="active" class="dropbutton">Recetas
+            </button>
+            <div class="dropdown-content">
+              <a href="/nueva_receta">Crear receta</a>
+              <a href="/mis_recetas">Mis recetas</a>
+            </div>
+        </div>
+         <div class="dropdown">
+            <button class="dropbutton">Precios
+            </button>
+            <div class="dropdown-content">
+              <a href="/productos">Productos</a>
+              <a href="/registros">Registrar precio</a>
+            </div>
+        </div>
+        <div id= "dropdown-right" class="dropdown">
+            <button class="dropbutton">Ajustes
+            </button>
+            <div class="dropdown-content">
+              <a href="/ajustes">Ajustes</a>
+              <a href="/logout">Cerrar sesión</a>
+            </div>
+        <div class="dropdown">
+            {% if nombre_session %}
+             <button id="nombre" class="dropbutton">{{nombre_session}}</button>
+            {% endif %}
+        </div>
+
+        </div>
+    </div>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <p id="flash"><strong>{{ message }}</strong></p>
+        {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+
+
+<div id="pagina">
+    {%for dato in mostrar_datos%}
+    <h3><p>{{dato[1]}}</p></h3>
+{% if error %}
+         <p id="error"><strong>Error</strong>: {{error}}</p>
+{% endif %}
+
+<div id="insertar_campos-lista">
+ <form action="receta" method="post" id="receta">
+
+     <ul>
+     <li><label for="producto">
+  PRODUCTO
+</label>
+
+<input class="caja" id= "producto" name="producto" placeholder="Ingresa un producto" type="text" value=""/>
+ </li><li><label for="cantidad">
+CANTIDAD
+</label>
+<input class="caja" id="cantidad" name="cantidad" placeholder="Ingresa la cantidad" type="number" step="0.001" value=""/>
+
+    </li>
+     <li><label for="unidad">
+  NOTAS
+</label>
+ <input class="caja" id="unidad" name="unidad" placeholder="Kg, l, taza..." type="text" value=""/>
+</li>
+</li>
+     <li>
+<input id="submit-datos" name="submit-productos" type="submit" value="Ingresar">
+     </li></ul>
+          </form>
+
+</div>
+
+    <div id="alineacion">
+
+
+
+<div id="fondo" style="background-color:{{dato[3]}};">
+
+
+{%endfor%}
+
+<table class="mostrar_productos">
+
+    <col width="20%"/>
+    <col width="5%"/>
+    <col width="5%"/>
+<tr id="contenidos">
+    <th>producto</th>
+    <th >cantidad</th>
+    <th>notas</th>
+</tr>
+{% for receta in relacion %}
+    <tr>
+    <td >{{receta[0]}}</td>
+    <td class="precio">{{receta[1]}}</td>
+    <td class="precio">{{receta[2]}}</td>
+</tr>
+    {% endfor %}
+
+ </tr>
+    {% for proc in procedimiento %}
+
+    <td id="procedimiento" colspan="3">{{proc[1]}}</td>
+</tr>
+    {% endfor %}
+
+
+    </table>
+
+
+</div>
+<div id="area">
+    <label for="proc">PROCEDIMIENTO</label>
+    <br>
+ <textarea id="proc" name="procedimiento" form="receta" rows="36%", cols="70%">
+ </textarea>
+</div>
+</div>
+
+</div>
+
+</body>
+</html>

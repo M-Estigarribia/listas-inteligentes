@@ -1,0 +1,19 @@
+.logo_inicio {
+position: relative;
+width: 711px;
+min-width: 300px;}
+
+.logo_inicio img{
+position: absolute;
+margin: 50% 100% auto;
+}
+.logo_inicio img.logo-hover{
+position:absolute;
+object-fit: contain;
+opacity: 0;
+transition: opacity .2s;
+}
+
+.logo_inicio:hover .logo-hover{
+opacity: 1;
+}

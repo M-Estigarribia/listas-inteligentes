@@ -1,0 +1,107 @@
+h1{
+color: #00c7ae;
+font-size: 300%;
+text-align:center;
+}
+
+#container {
+padding-top:3%;
+margin:auto;
+width: 30%;
+min-width:300px;
+
+}
+
+.formulario_ingreso {
+font-size: 200%;
+color: #00c7ae;
+text-align:center;
+}
+
+
+label {
+font-size: 100%;
+}
+
+::placeholder{
+color:#d6d6d6;
+}
+input:focus::placeholder{
+color:#3e3e3e;
+}
+
+.caja{
+margin-top:30px;
+margin-bottom:30px;
+padding:0px;
+color: #e4e4e4;
+font-size: 20px;
+width: 100%;
+display: block;
+border: 2px solid #00c7ae;
+border-radius:8px;
+outline:none;
+background-color:rgba(62,62,62,0.85);
+overflow: hidden;
+height:40px;
+}
+
+.caja:focus {
+background-color:rgba(132,221,209,0.4);
+}
+
+#boton{
+padding-top: 10%;}
+
+#login_submit{
+width: 100px;
+height:50px;
+font-size:70%;
+color:#84ddd1;
+font-weight:bold;
+border:solid;
+border-radius:8px;
+border-width:2px;
+border-color:#00c7ae;
+background-color:rgba(62,62,62,0.85);
+}
+
+#login_submit:hover{
+width: 100px;
+height:50px;
+font-size:70%;
+color:#3e3e3e;
+font-weight:bold;
+border:solid;
+border-radius:8px;
+border-width:2px;
+border-color:#00c7ae;
+background-color:rgba(132,221,209,0.85);
+}
+
+#ir_registro{
+margin-top:3%;
+width: 500px;
+height:40px;
+font-size:70%;
+color:#4d4d4d;
+font-weight:bold;
+border:double;
+border-color:#4d4d4d;
+border-radius:8px;
+background-color:rgba(153,153,153, 0.85);
+}
+
+#ir_registro:hover {
+margin-top:3%;
+width: 500px;
+height:40px;
+font-size:70%;
+color:#4d4d4d;
+font-weight:bold;
+border:double;
+border-color:#4d4d4d;
+border-radius:8px;
+background-color:rgba(0,199,174, 0.85);
+}
+

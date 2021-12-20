@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../static/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/class_error.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/flash_msg.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/mis_listas.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/barra_principal.css">
+    <title>Listas Inteligentes | Mis listas</title>
+</head>
+<body>
+    <div class="barra_principal">
+        <div class="dropdown">
+            <button id="active" class="dropbutton">Listas
+            </button>
+            <div class="dropdown-content">
+              <a href="/nueva_lista">Crear lista</a>
+              <a href="/mis_listas">Mis listas</a>
+            </div>
+          </div>
+        <div class="dropdown">
+            <button class="dropbutton">Recetas
+            </button>
+            <div class="dropdown-content">
+              <a href="/nueva_receta">Crear receta</a>
+              <a href="/mis_recetas">Mis recetas</a>
+            </div>
+        </div>
+         <div class="dropdown">
+            <button class="dropbutton">Precios
+            </button>
+            <div class="dropdown-content">
+              <a href="/productos">Productos</a>
+              <a href="/registros">Registrar precio</a>
+            </div>
+        </div>
+        <div id= "dropdown-right" class="dropdown">
+            <button class="dropbutton">Ajustes
+            </button>
+            <div class="dropdown-content">
+              <a href="/ajustes">Ajustes</a>
+              <a href="/logout">Cerrar sesión</a>
+            </div>
+        <div class="dropdown">
+            {% if nombre_session %}
+             <button id="nombre" class="dropbutton">{{nombre_session}}</button>
+            {% endif %}
+        </div>
+
+        </div>
+    </div>
+
+ {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <p id="flash"><strong>{{ message }} {{category}}</strong></p>
+        {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+
+
+    <!--{%for lista in listas%}
+
+    <div class="listas">{{lista[0]}}</div>
+
+
+  {%endfor%}
+-->
+
+
+    {% for i in largo%}
+<div id="container">
+{%for dato in datos%}
+        {% if dato[1] == i[0] %}
+    <div class="listas" style="background-color:{{dato[2]}}" href="id_lista">
+        <p class="titulo_lista">{{dato[0]}}</p>
+        {%endif%}
+        {% endfor %}
+
+      <div>
+
+        <table >
+
+    <col width="20%"/>
+    <col width="5%"/>
+    <col width="30%"/>
+<tr id="contenidos">
+    <th>producto</th>
+    <th >cantidad</th>
+    <th>notas</th>
+</tr>
+    {% for lista in listas %}
+    {% if lista[3] == i[0] %}
+    <tr>
+    <td >{{lista[0]}}</td>
+    <td class="precio">{{lista[1]}}</td>
+    <td class="precio">{{lista[2]}}</td>
+
+
+
+</tr>
+{% endif %}
+{% endfor %}
+
+
+</table>
+
+</div>
+
+</div>
+
+</div>
+
+
+{% endfor %}
+
+
+
+
+</body>
+</html>

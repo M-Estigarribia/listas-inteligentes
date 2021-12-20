@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../static/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/barra_principal.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/registros.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/class_error.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/flash_msg.css">
+
+    <title>Listas Inteligentes | Registro de precios</title>
+  </head>
+  <body>
+<div class="barra_principal">
+        <div class="dropdown">
+            <button class="dropbutton">Listas
+            </button>
+            <div class="dropdown-content">
+              <a href="/nueva_lista">Crear lista</a>
+              <a href="/mis_listas">Mis listas</a>
+            </div>
+          </div>
+        <div class="dropdown">
+            <button class="dropbutton">Recetas
+            </button>
+            <div class="dropdown-content">
+              <a href="/nueva_receta">Crear receta</a>
+              <a href="/mis_recetas">Mis recetas</a>
+            </div>
+        </div>
+    <div class="dropdown">
+            <button id="active" class="dropbutton">Precios
+            </button>
+            <div class="dropdown-content">
+              <a href="/productos">Productos</a>
+              <a href="/registros">Registrar precio</a>
+            </div>
+        </div>
+        <div id= "dropdown-right" class="dropdown">
+            <button class="dropbutton">Ajustes
+            </button>
+            <div class="dropdown-content">
+              <a href="/ajustes">Ajustes</a>
+              <a href="/logout">Cerrar sesión</a>
+            </div>
+            <div class="dropdown">
+        {% if nombre_session %}
+         <button id="nombre" class="dropbutton">{{nombre_session}}</button>
+        {% endif %}
+    </div>
+        </div>
+
+</div>
+
+
+<h3>
+    Gestionar precios
+</h3>
+
+<div id="container">
+      {% if error %}
+         <p id="error"><strong>Error</strong>: {{error}}</p>
+      {% endif %}
+     <h4 class="modificacion_datos">
+      <form action="registros" method="post" name="">
+
+          <p id="titulo_precio"> REGISTRAR PRECIO</p>
+
+
+
+      <div id="insertar_campos">
+
+              <ul>
+         <label for="ingresar_producto">
+            Producto
+        </label>
+
+       <li> <input class="caja" id="ingresar_producto" name="ingresar_producto" placeholder="Nombre del producto" type="text" value=""/></li>
+                  <label for="ingresar_precio">
+            Precio ($)
+        </label>
+<li> <input class="caja-precio" id="ingresar_precio" name="ingresar_precio" placeholder="Ingresa el precio" type="number"step="0.001" value=""/></li>
+        <li> <input id="ingresar_precio_submit" name="busqueda_submit" type="submit" value="Registrar"/></li>
+
+             </ul>
+      </div>
+      </form>
+
+    </h4>
+  </div>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <p id="flash">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+<div class="tabla">
+<table class="mostrar_productos">
+
+    <col width="300px"/>
+    <col width="290px"/>
+<tr>
+    <th>Producto</th>
+    <th >Precio ingresado</th>
+
+</tr>
+
+    {%if resultado %}
+    {%if precio %}
+<tr>
+    <td >{{resultado}}</td>
+    <td class="precio">${{precio}}</td>
+
+</tr>
+ {% endif %}
+  {%endif %}
+
+</table>
+
+</div>
+
+
+
+
+ </body>
+</html>

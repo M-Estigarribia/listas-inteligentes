@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../static/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/class_error.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/flash_msg.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/nueva_receta.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/barra_principal.css">
+    <title>Listas Inteligentes | Nueva receta</title>
+</head>
+<body>
+    <div class="barra_principal">
+        <div class="dropdown">
+            <button class="dropbutton">Listas
+            </button>
+            <div class="dropdown-content">
+              <a href="/nueva_lista">Crear lista</a>
+              <a href="/mis_listas">Mis listas</a>
+            </div>
+          </div>
+        <div class="dropdown">
+            <button id="active" class="dropbutton">Recetas
+            </button>
+            <div class="dropdown-content">
+              <a href="/nueva_receta">Crear receta</a>
+              <a href="/mis_recetas">Mis recetas</a>
+            </div>
+        </div>
+         <div class="dropdown">
+            <button class="dropbutton">Precios
+            </button>
+            <div class="dropdown-content">
+              <a href="/productos">Productos</a>
+              <a href="/registros">Registrar precio</a>
+            </div>
+        </div>
+        <div id= "dropdown-right" class="dropdown">
+            <button class="dropbutton">Ajustes
+            </button>
+            <div class="dropdown-content">
+              <a href="/ajustes">Ajustes</a>
+              <a href="/logout">Cerrar sesión</a>
+            </div>
+        <div class="dropdown">
+            {% if nombre_session %}
+             <button id="nombre" class="dropbutton">{{nombre_session}}</button>
+            {% endif %}
+        </div>
+
+        </div>
+    </div>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <p id="flash"><strong>{{ message }}</strong></p>
+        {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+
+
+<div class="nueva-receta">
+
+    <form action="nueva_receta" method="post" name="nueva_receta">
+
+
+<p class="titulo-colores">Ingresa el nombre de la receta</p>
+
+
+<input id="caja" name="nombre_receta" required="true" placeholder="Nueva receta" type="text" value=""/>
+
+
+        <p class="titulo-colores">Elige un color</p>
+<div class="nueva-lista">
+
+
+        <ul>
+             <li>
+        <div id="blanco"></div>
+                 <input id="color0-blanco" name="color" type="radio" value="#ffffff"/>
+            </li>
+            <li>
+                <div id="default"></div>
+        <input id="color1-default" name="color" type="radio" value="#5cbfb3" checked/>
+
+            </li>
+                <li><div id="amarillo"></div>
+        <input id="color2-amarillo" name="color" type="radio" value="#fffea8"/>
+        </li>
+
+            <li><div id="salmon"></div>
+         <input id="color3-salmon" name="color" type="radio" value="#e39f91"/>
+
+            </li>
+            <li><div id="lila"></div>
+        <input id="color4-lila" name="color" type="radio" value="#b591e3"/>
+
+            </li>
+            <li><div id="rosa"></div>
+        <input id="color5-rosa" name="color" type="radio" value="#f097d8"/>
+
+            </li>
+            <li>
+                <div id="celeste"></div>
+         <input id="color6-celeste" name="color" type="radio" value="#97bff0"/>
+
+            </li>
+            <li>
+                <div id="verde"></div>
+        <input id="color7-verde" name="color" type="radio" value="#bbedc4"/>
+
+            </li>
+            </ul>
+
+    </div>
+
+<br>
+        <input id="submit-receta" name="submit-receta" type="submit" value="Crear receta!">
+
+
+    </form>
+
+</div>
+
+</body>
+</html>

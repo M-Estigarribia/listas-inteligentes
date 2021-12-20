@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../static/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/barra_principal.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/registros.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/class_error.css">
+    <title>Listas Inteligentes | Buscar precios</title>
+  </head>
+  <body>
+<div class="barra_principal">
+       <div class="dropdown">
+            <button class="dropbutton">Listas
+            </button>
+            <div class="dropdown-content">
+              <a href="/nueva_lista">Crear lista</a>
+              <a href="/mis_listas">Mis listas</a>
+            </div>
+          </div>
+        <div class="dropdown">
+            <button class="dropbutton">Recetas
+            </button>
+            <div class="dropdown-content">
+              <a href="/nueva_receta">Crear receta</a>
+              <a href="/mis_recetas">Mis recetas</a>
+            </div>
+        </div>
+   <div class="dropdown">
+            <button id="active" class="dropbutton">Precios
+            </button>
+            <div class="dropdown-content">
+              <a href="/productos">Productos</a>
+              <a href="/registros">Registrar precio</a>
+            </div>
+       </div>
+        <div id= "dropdown-right" class="dropdown">
+            <button class="dropbutton">Ajustes
+            </button>
+            <div class="dropdown-content">
+              <a href="/ajustes">Ajustes</a>
+              <a href="/logout">Cerrar sesión</a>
+            </div>
+            <div class="dropdown">
+        {% if nombre_session %}
+         <button id="nombre" class="dropbutton">{{nombre_session}}</button>
+        {% endif %}
+    </div>
+        </div>
+
+</div>
+ {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+<h3>
+    Gestionar precios
+</h3>
+
+<div id="container">
+      {% if error %}
+         <p id="error"><strong>Error</strong>: {{error}}</p>
+      {% endif %}
+     <h4 class="modificacion_datos">
+     <div id="insertar_campos">
+        <form action="productos" method="post" name="">
+<ul>
+        <label for="busqueda">
+            Búsqueda
+        </label>
+       <li> <input class="caja" id="busqueda" name="busqueda" placeholder="Nombre del producto" type="text" value=""/></li>
+        <li> <input id="busqueda_submit" name="busqueda_submit" type="submit" value="Buscar"/></li>
+        </form></div>
+         </ul>
+
+
+    </h4>
+  </div>
+
+<div class="tabla">
+<table class="mostrar_productos">
+
+    <col width="450px"/>
+    <col width="150px"/>
+    <col width="200px"/>
+<tr>
+    <th>producto</th>
+    <th >Precio ingresado</th>
+    <th>Fecha registro</th>
+</tr>
+
+    {%for resultado in resultados%}
+    {%for precio in precios%}
+    {%if resultado[1] == precio[1]%}
+
+<tr>
+    <td >{{resultado[0]}}</td>
+    <td class="precio">${{precio[0]}}</td>
+    <td class="precio">{{precio[2]}}</td>
+</tr>
+{%endif%}
+ {%endfor%}
+  {%endfor%}
+
+</table>
+
+</div>
+
+
+
+
+ </body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../static/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/signup.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/class_error.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/flash_msg.css">
+
+    <title>Listas Inteligentes | Registro</title>
+</head>
+<body>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <p id="flash">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+
+
+
+<h1>
+    <p>Regístrate!</p>
+</h1>
+
+<div id="container">
+
+    {% if error %}
+    <p id="error"><strong>Error</strong>: {{error}}</p>
+    {% endif %}
+
+    <h2 class="formulario_registro">
+
+            <form action="signup" method="post" name="signup">
+                <label for="nombre_usuario">
+                    Nombre de usuario
+                </label>
+                <input class="caja" id="nombre_usuario" name="nombre_usuario" required="true" placeholder="Selecciona tu nombre de usuario" type="text" value=""/>
+                <label for="correo">
+                    Email
+                </label>
+                <input class="caja" id="correo" name="correo" required="true" placeholder="Escribe tu email" type="text" value=""/>
+                <label for="passwd">
+                    Contraseña
+                </label>
+                <input class="caja" id="passwd" name="passwd" required="true" placeholder="Escribe la contraseña" type="password" value=""/>
+                <label for="confirm">
+                    Repetir Contraseña
+                </label>
+                <input class="caja" id="confirm" name="confirm" required="true" placeholder="Escribe la contraseña nuevamente"  type="password" value=""/>
+                <div id="boton">
+                    <input id="signup_submit" name="signup_submit" type="submit" value="Crear cuenta"/></a>
+                </div>
+            </form>
+    </h2>
+        </div>
+
+</body>
+</html>

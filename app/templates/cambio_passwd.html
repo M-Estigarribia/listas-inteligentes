@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../static/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/barra_principal.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/modificar_datos.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/class_error.css">
+    <title>Listas Inteligentes | Modificar datos</title>
+  </head>
+  <body>
+<div class="barra_principal">
+         <div class="dropdown">
+            <button class="dropbutton">Listas
+            </button>
+            <div class="dropdown-content">
+              <a href="/nueva_lista">Crear lista</a>
+              <a href="/mis_listas">Mis listas</a>
+            </div>
+          </div>
+        <div class="dropdown">
+            <button class="dropbutton">Recetas
+            </button>
+            <div class="dropdown-content">
+              <a href="/nueva_receta">Crear receta</a>
+              <a href="/mis_recetas">Mis recetas</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbutton">Precios
+            </button>
+            <div class="dropdown-content">
+              <a href="/productos">Productos</a>
+              <a href="/registros">Registrar precio</a>
+            </div>
+        </div>
+        <div id= "dropdown-right" class="dropdown">
+            <button id="active" class="dropbutton">Ajustes
+            </button>
+            <div class="dropdown-content">
+              <a href="/ajustes">Ajustes</a>
+              <a href="/logout">Cerrar sesión</a>
+            </div>
+            <div class="dropdown">
+        {% if nombre_session %}
+         <button id="nombre" class="dropbutton">{{nombre_session}}</button>
+        {% endif %}
+    </div>
+        </div>
+
+</div>
+ {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+<h3>
+    <p>Modificar datos</p>
+</h3>
+
+<p id="subtitulo"><strong>Cambiar contraseña</strong></p>
+  <div id="container">
+      {% if error %}
+         <p id="error"><strong>Error</strong>: {{error}}</p>
+      {% endif %}
+     <h4 class="modificacion_datos">
+         <form action="cambio_passwd" method="post" name="cambio_passwd">
+        <label for="last_passwd">
+            Contraseña Actual
+        </label>
+        <input class="caja" id="last_passwd" name="last_passwd" required="true" placeholder="Ingresa tu contraseña actual" type="password" value=""/>
+        <label for="new_passwd">
+            Nueva Contraseña
+        </label>
+        <input class="caja" id="new_passwd" name="new_passwd" required="true" placeholder="Ingresa tu nueva contraseña" type="password" value=""/>
+        <input id="cambio_passwd_submit" name="cambio_passwd_submit" type="submit" value="Aplicar"/>
+
+     </form>
+ </h4>
+  </div>
+
+</body>
+</html>

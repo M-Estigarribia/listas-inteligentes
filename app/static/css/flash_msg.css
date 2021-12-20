@@ -1,0 +1,28 @@
+#flash {
+position: relative;
+top: 0;
+padding: 5px;
+background-color: #cae8ca;
+ border: 2px solid #4CAF50;
+font-size: 140%;
+color: #1d1d1d;
+animation: desaparecer_flash 0s ease-out 5s;
+-webkit-animation-fill-mode:forwards;
+animation-fill-mode:forwards;
+transition-timing-function:ease-out;
+}
+@keyframes desaparecer_flash  {
+to{
+width:0;
+height:0;
+visibility:hidden;
+}
+}
+
+@-webkit-keyframes desaparecer_flash {
+to{
+width:0;
+height:0;
+visibility:hidden;
+}
+}

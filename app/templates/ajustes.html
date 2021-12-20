@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../static/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/ajustes.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/class_error.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/flash_msg.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/barra_principal.css">
+    <title>Listas Inteligentes | Ajustes</title>
+</head>
+<body>
+    <div class="barra_principal">
+        <div class="dropdown">
+            <button class="dropbutton">Listas
+            </button>
+            <div class="dropdown-content">
+              <a href="/nueva_lista">Crear lista</a>
+              <a href="/mis_listas">Mis listas</a>
+            </div>
+          </div>
+        <div class="dropdown">
+            <button class="dropbutton">Recetas
+            </button>
+            <div class="dropdown-content">
+              <a href="/nueva_receta">Crear receta</a>
+              <a href="/mis_recetas">Mis recetas</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbutton">Precios
+            </button>
+            <div class="dropdown-content">
+              <a href="/productos">Productos</a>
+              <a href="/registros">Registrar precio</a>
+            </div>
+        </div>
+        <div id= "dropdown-right" class="dropdown">
+            <button id="active" class="dropbutton">Ajustes
+            </button>
+            <div class="dropdown-content">
+              <a href="/ajustes">Ajustes</a>
+              <a href="/logout">Cerrar sesión</a>
+            </div>
+            <div class="dropdown">
+            {% if nombre_session %}
+             <button id="nombre" class="dropbutton">{{nombre_session}}</button>
+            {% endif %}
+        </div>
+        </div>
+    </div>
+
+<h3>
+    <p>Mis Datos</p>
+
+</h3>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <p id="flash">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+  {% endwith %}
+<h4>
+
+
+    <p>Nombre de usuario</p>
+{% if nombre_session %}
+    <p class="datos-usuario">{{nombre_session}}</p>
+{% endif %}
+    <p>Correo electrónico</p>
+
+    {% if correo_session %}
+        <p class="datos-usuario">{{correo_session}}</p>
+{% endif %}
+<div id="container">
+        <a href="/cambio_correo">
+        <input class="botonera" id="cambio_correo" name="cambio_passwd" type="submit" value="Modificar mi correo"/>
+        </a>
+    <br>
+    <a href="/cambio_passwd">
+        <input class="botonera" id="cambio_passwd" name="cambio_passwd" type="submit" value="Cambiar mi contraseña"/>
+        </a>
+    <br>
+    <a href="/borrar_cuenta">
+        <input class="botonera" id="borrar_cuenta" name="borrar_cuenta" type="submit" value="Borrar cuenta"/>
+        </a>
+</div>
+</h4>
+
+
+
+
+</body>
+</html>
